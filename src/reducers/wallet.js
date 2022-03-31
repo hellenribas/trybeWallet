@@ -6,7 +6,11 @@ const INICIAL_STATE = {
 
 const wallet = (state = INICIAL_STATE, action) => {
   switch (action.type) {
-  case 'NEW_ACTION': return state;
+  case 'REQUEST_CURRENCIES': return { ...state };
+  case 'RECEIVE_CURRENCIES': return {
+    ...state,
+    currencies: state.currencies.concat(action.currencies),
+  };
   default: return state;
   }
 };
