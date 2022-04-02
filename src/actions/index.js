@@ -1,7 +1,6 @@
 // Coloque aqui suas actions
 
 const EMAIL_ACTION = 'EMAIL_ACTION';
-const EXPENSES_ACTION = 'EXPENSES_ACTION';
 const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 const RECEIVE_CURRENCIES = 'RECEIVE_CURRENCIES';
 const REQUEST_ASK = 'REQUEST_ASK';
@@ -29,7 +28,7 @@ export const fetchCurrencies = () => async (dispatch) => {
   dispatch(receiveCurrencies(keysData));
 };
 
-const requestAsk = (expenses) => ({
+const requestAsk = () => ({
   type: REQUEST_ASK,
 });
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Header from './Header';
 import { fetchCurrencies, fetchAsk } from '../actions';
+import Table from './Table';
 
 const Alimentação = 'Alimentação';
 class Wallet extends React.Component {
@@ -114,6 +115,7 @@ class Wallet extends React.Component {
 
           </button>
         </form>
+        <Table />
       </div>
     );
   }
