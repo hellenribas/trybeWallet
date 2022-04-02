@@ -74,7 +74,8 @@ class Wallet extends React.Component {
               name="currency"
               value={ currency }
             >
-              {currencies.map((elem, index) => <option key={ `${elem}${index}` }>{elem}</option>)}
+              {currencies
+                .map((elem, index) => <option key={ `${elem}${index}` }>{elem}</option>)}
             </select>
           </label>
           <label htmlFor="method-inputs">
