@@ -4,6 +4,8 @@ const INICIAL_STATE = {
   expenses: [],
 };
 
+let actionNew = '';
+
 const wallet = (state = INICIAL_STATE, action) => {
   switch (action.type) {
   case 'REQUEST_CURRENCIES': return { ...state };
@@ -11,6 +13,21 @@ const wallet = (state = INICIAL_STATE, action) => {
     ...state,
     currencies: state.currencies.concat(action.currencies),
   };
+  case 'EXPENSES_ACTION': {
+    actionNew = action;
+    return {
+      ...state,
+      expenses: [...state.expenses, action.expense],
+    };
+  }
+  case 'REQUEST_ASK': return { ...state };
+  case 'RECEIVE_ASK': {
+    actionNew.expense.exchangeRates = action.data;
+    return {
+      ...state,
+      expenses: [...state.expenses],
+    };
+  }
   default: return state;
   }
 };
