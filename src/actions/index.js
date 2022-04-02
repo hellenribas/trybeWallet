@@ -5,6 +5,7 @@ const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 const RECEIVE_CURRENCIES = 'RECEIVE_CURRENCIES';
 const REQUEST_ASK = 'REQUEST_ASK';
 const RECEIVE_ASK = 'RECEIVE_ASK';
+const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 export const emailAction = (email) => ({ type: EMAIL_ACTION, email });
 
@@ -30,6 +31,11 @@ export const fetchCurrencies = () => async (dispatch) => {
 
 const requestAsk = () => ({
   type: REQUEST_ASK,
+});
+
+export const removeAction = (id) => ({
+  type: REMOVE_EXPENSE,
+  id,
 });
 
 const receiveAsk = (data) => ({
