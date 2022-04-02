@@ -9,7 +9,7 @@ const RECEIVE_ASK = 'RECEIVE_ASK';
 
 export const emailAction = (email) => ({ type: EMAIL_ACTION, email });
 
-export const expensesAction = (expense) => ({ type: EXPENSES_ACTION, expense });
+// export const expensesAction = (expense) => ({ type: EXPENSES_ACTION, expense });
 
 const requestCurrencies = () => ({
   type: REQUEST_CURRENCIES,
@@ -29,7 +29,7 @@ export const fetchCurrencies = () => async (dispatch) => {
   dispatch(receiveCurrencies(keysData));
 };
 
-const requestAsk = () => ({
+const requestAsk = (expenses) => ({
   type: REQUEST_ASK,
 });
 
@@ -38,9 +38,10 @@ const receiveAsk = (data) => ({
   data,
 });
 
-export const fetchAsk = () => async (dispatch) => {
+export const fetchAsk = (expenses) => async (dispatch) => {
   dispatch(requestAsk());
   const request = await fetch('https://economia.awesomeapi.com.br/json/all');
-  const data = await request.json();
-  dispatch(receiveAsk(data));
+  const exchangeRates = await request.json();
+  const obj = { ...expenses, exchangeRates };
+  dispatch(receiveAsk(obj));
 };

@@ -14,22 +14,16 @@ class Header extends Component {
   render() {
     const { userEmail, despesas } = this.props;
     // const newDespesas = despesas.slice(1);
-    if (despesas.length > 0) {
-      console.log(despesas
-        .map(({ currency, exchangeRates }) => console.log(currency, exchangeRates)));
-    }
+    const numberDespesa = despesas.map(({ currency, value, exchangeRates }) => (
+      Number(value) * Number(exchangeRates[currency].ask)));
+
     return (
       <header>
         <div data-testid="email-field">{userEmail}</div>
         <div data-testid="total-field">
           {
             despesas.length > 0
-              ? ((despesas
-                .map((elem, index) => {
-                  elem.id = index;
-                  // eslint-disable-next-line dot-notation
-                  return Number(elem.value) * Number(elem.exchangeRates['USD']);
-                })))
+              ? numberDespesa.reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2)
               : 0
           }
 
@@ -51,5 +45,3 @@ Header.propTypes = {
 }.isRequired;
 
 export default connect(mapStateToProps)(Header);
-
-// .reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2))

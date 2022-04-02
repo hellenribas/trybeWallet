@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Header from './Header';
-import { fetchCurrencies, expensesAction, fetchAsk } from '../actions';
+import { fetchCurrencies, fetchAsk } from '../actions';
 
 const Alimentação = 'Alimentação';
 class Wallet extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: 0,
       value: 0,
       description: '',
       method: 'Dinheiro',
@@ -30,10 +31,10 @@ class Wallet extends React.Component {
   }
 
   saveExpensesClick = () => {
-    const { saveExpenses, fetchAsks } = this.props;
-    const { value, description, method, currency, tag } = this.state;
-    saveExpenses({ value, description, method, currency, tag });
-    fetchAsks();
+    const { saveExpenses } = this.props;
+    this.setState((prevState) => ({ id: prevState.id + 1 }));
+    const { value, description, method, currency, tag, id } = this.state;
+    saveExpenses({ value, description, method, currency, tag, id });
     this.setState({
       value: 0,
       description: '',
@@ -120,8 +121,7 @@ class Wallet extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrenciesProp: () => dispatch(fetchCurrencies()),
-  saveExpenses: (expenses) => dispatch(expensesAction(expenses)),
-  fetchAsks: () => dispatch(fetchAsk()),
+  saveExpenses: (expenses) => dispatch(fetchAsk(expenses)),
 });
 
 const mapStateToProps = (state) => ({
