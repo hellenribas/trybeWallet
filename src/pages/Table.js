@@ -4,8 +4,21 @@ import propTypes from 'prop-types';
 import { removeAction } from '../actions';
 
 class Table extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     edit: false,
+  //   };
+  // }
+
+  // handleEdit = () => {
+  //   this.setState({
+  //     edit: true,
+  //   });
+  // }
+
   render() {
-    const { expenses, removeExpense } = this.props;
+    const { expenses, removeExpense, receiveEdit } = this.props;
     return (
       <table>
         <thead>
@@ -46,6 +59,15 @@ class Table extends Component {
                   onClick={ () => removeExpense(elem.id) }
                 >
                   Excluir
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  data-testid="edit-btn"
+                  onClick={ () => receiveEdit(elem.id) }
+                >
+                  Editar
                 </button>
               </td>
             </tr>

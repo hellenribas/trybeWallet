@@ -22,6 +22,15 @@ const wallet = (state = INICIAL_STATE, action) => {
     ...state,
     expenses: state.expenses.filter(({ id }) => id !== action.id),
   };
+  case 'EDIT_ACTION': {
+    const { id } = action.editExp;
+    state.expenses[id] = action.editExp;
+    console.log(state.expenses, id);
+    return {
+      ...state,
+      expenses: [...state.expenses],
+    };
+  }
   default: return state;
   }
 };

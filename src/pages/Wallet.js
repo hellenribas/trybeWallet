@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Header from './Header';
-import { fetchCurrencies, fetchAsk } from '../actions';
+import { fetchCurrencies, fetchAsk, editAction } from '../actions';
 import Table from './Table';
 
 const Alimentação = 'Alimentação';
@@ -16,6 +16,7 @@ class Wallet extends React.Component {
       method: 'Dinheiro',
       currency: 'USD',
       tag: Alimentação,
+      edit: false,
     };
   }
 
@@ -45,9 +46,31 @@ class Wallet extends React.Component {
     });
   }
 
+  editExpensesClick = () => {
+    const { editExpenses, exchange } = this.props;
+    const { value, description, method, currency, tag, idTarget } = this.state;
+    const { exchangeRates } = exchange[idTarget];
+    const id = idTarget;
+    editExpenses({ value, description, method, currency, tag, id, exchangeRates });
+    this.setState({
+      value: 0,
+      description: '',
+      method: 'Dinheiro',
+      currency: 'USD',
+      tag: Alimentação,
+    });
+  }
+
+  receiveEdit = (idTarget) => {
+    this.setState({
+      edit: true,
+      idTarget,
+    });
+  }
+
   render() {
     const { currencies } = this.props;
-    const { value, description, method, currency, tag } = this.state;
+    const { value, description, method, currency, tag, edit } = this.state;
     return (
       <div>
         <Header />
@@ -72,6 +95,7 @@ class Wallet extends React.Component {
               id="options-currencies"
               onChange={ this.handleInput }
               name="currency"
+              data-testid="currency-input"
               value={ currency }
             >
               {currencies
@@ -108,15 +132,26 @@ class Wallet extends React.Component {
               <option value="Saúde">Saúde</option>
             </select>
           </label>
-          <button
-            type="button"
-            onClick={ this.saveExpensesClick }
-          >
-            Adicionar despesa
+          { edit
+            ? (
+              <button
+                type="button"
+                onClick={ () => this.editExpensesClick() }
+              >
+                Editar despesa
 
-          </button>
+              </button>
+            )
+            : (
+              <button
+                type="button"
+                onClick={ this.saveExpensesClick }
+              >
+                Adicionar despesa
+
+              </button>)}
         </form>
-        <Table />
+        <Table receiveEdit={ this.receiveEdit } />
       </div>
     );
   }
@@ -125,6 +160,7 @@ class Wallet extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrenciesProp: () => dispatch(fetchCurrencies()),
   saveExpenses: (expenses) => dispatch(fetchAsk(expenses)),
+  editExpenses: (expenses) => dispatch(editAction(expenses)),
 });
 
 const mapStateToProps = (state) => ({

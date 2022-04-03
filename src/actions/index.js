@@ -6,9 +6,11 @@ const RECEIVE_CURRENCIES = 'RECEIVE_CURRENCIES';
 const REQUEST_ASK = 'REQUEST_ASK';
 const RECEIVE_ASK = 'RECEIVE_ASK';
 const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
+const EDIT_ACTION = 'EDIT_ACTION';
 
 export const emailAction = (email) => ({ type: EMAIL_ACTION, email });
 
+export const editAction = (editExp) => ({ type: EDIT_ACTION, editExp });
 // export const expensesAction = (expense) => ({ type: EXPENSES_ACTION, expense });
 
 const requestCurrencies = () => ({
