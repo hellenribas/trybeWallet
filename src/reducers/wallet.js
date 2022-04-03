@@ -25,7 +25,6 @@ const wallet = (state = INICIAL_STATE, action) => {
   case 'EDIT_ACTION': {
     const { id } = action.editExp;
     state.expenses[id] = action.editExp;
-    console.log(state.expenses, id);
     return {
       ...state,
       expenses: [...state.expenses],

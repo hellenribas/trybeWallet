@@ -55,19 +55,17 @@ class Table extends Component {
               <td>
                 <button
                   type="button"
-                  data-testid="delete-btn"
-                  onClick={ () => removeExpense(elem.id) }
-                >
-                  Excluir
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
                   data-testid="edit-btn"
                   onClick={ () => receiveEdit(elem.id) }
                 >
                   Editar
+                </button>
+                <button
+                  type="button"
+                  data-testid="delete-btn"
+                  onClick={ () => removeExpense(elem.id) }
+                >
+                  Excluir
                 </button>
               </td>
             </tr>
