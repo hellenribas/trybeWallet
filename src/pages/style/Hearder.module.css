@@ -1,0 +1,160 @@
+@font-face {
+  font-family: Jost;
+  src: url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+}
+
+
+.container , .container-logo , .wallet , .user {
+  display: flex;
+}
+
+.container {
+  align-items: center;
+  background: #f0f4f5;
+  border-bottom: 0.1rem solid #b6bbc8;
+  font-family: Jost, monospace, sans-serif, Arial, Helvetica;
+  justify-content: space-between;
+  padding: 1.2rem 0;
+}
+
+.container-logo {
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 6%;
+  margin-right: 25%;
+}
+
+.user {
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: 25%;
+  margin-right: 6%;
+  width: 21.8rem;
+}
+
+.user img {
+  height: 14%;
+  width: 14%;
+}
+
+.container-logo img {
+  height: 5.6rem;
+  margin-right: 1.5rem;
+  width: 27%;
+}
+
+.container-logo h1 {
+  align-items: center;
+  color: #3c3a40;
+  display: flex;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.5rem;
+  text-align: center;
+}
+
+.wallet {
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 500;
+  justify-content: center;
+  width: 13.3rem;
+}
+
+.wallet a {
+  height: 28%;
+  width: 28%;
+}
+
+.value {
+  display: flex;
+  font-size: 2.4rem;
+}
+
+.value img {
+  height: 10%;
+  margin-right: 0.2rem;
+  width: 10%;
+}
+
+@media only screen and ( max-width : 76.8rem ) {
+
+  .wallet {
+    flex-direction: column;
+    width: 33.3rem;
+  }
+
+  .wallet a {
+    height: 5rem;
+    margin-bottom: 3%;
+    width: 5rem;
+  }
+
+  .value {
+    font-size: 3rem;
+  }
+
+  .user img {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .user p {
+    font-size: 1.6rem;
+  }
+
+  .container-logo h1 {
+    font-size: 3.6rem;
+  }
+
+  .container-logo img {
+    height: 6rem;
+    width: 37%;
+
+  }
+
+}
+
+@media only screen and ( max-width : 48rem ) {
+
+  .container {
+    font-size: 1.2rem;
+    justify-content: space-evenly;
+  }
+
+  .user {
+    flex-flow: column nowrap;
+    height: 40%;
+    justify-content: space-between;
+  }
+
+  .user p {
+    font-size: 1.6rem;
+  }
+
+  .user img {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .wallet {
+    font-size: 1.2rem;
+  }
+
+  .wallet a {
+    height: 6rem;
+    margin-bottom: 5%;
+    width: 6rem;
+  }
+
+  .container-logo h1 {
+    font-size: 1.8rem;
+  }
+
+  .container-logo img {
+    height: 6rem;
+    width: 60%;
+  }
+}

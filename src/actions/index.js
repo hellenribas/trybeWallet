@@ -11,7 +11,6 @@ const EDIT_ACTION = 'EDIT_ACTION';
 export const emailAction = (email) => ({ type: EMAIL_ACTION, email });
 
 export const editAction = (editExp) => ({ type: EDIT_ACTION, editExp });
-// export const expensesAction = (expense) => ({ type: EXPENSES_ACTION, expense });
 
 const requestCurrencies = () => ({
   type: REQUEST_CURRENCIES,

@@ -1,0 +1,12 @@
+.footer {
+  align-items: center;
+  border-top: 0.1rem solid #b6bbc8;
+  display: flex;
+  height: 6%;
+  justify-content: center;
+}
+
+.github {
+  color: #3c3a40;
+  font-size: 4rem;
+}

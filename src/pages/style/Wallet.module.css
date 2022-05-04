@@ -1,0 +1,165 @@
+@font-face {
+  font-family: Jost;
+  src: url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.container , .background , .form , .container_form {
+  display: flex;
+}
+
+
+.container {
+  background-color: #f0f4f5;
+  flex-direction: column;
+  font-family: Jost, monospace, sans-serif, Arial, Helvetica;
+  height: 100%;
+  justify-content: space-between;
+}
+
+
+.container_form {
+  align-items: center;
+  align-self: center;
+  background: #b8e6cd;
+  border-radius: 4rem;
+  box-shadow: 0 0.4rem 4rem rgba(182, 187, 184, 0.9);
+  display: flex;
+  flex-direction: column;
+  height: 51.5%;
+  justify-content: center;
+  justify-self: center;
+  width: 44%;
+}
+
+.head {
+  display: flex;
+  justify-self: flex-start;
+}
+
+.head button {
+  background-color: #10a133;
+  border-radius: 50%;
+  color: #e6e6e6;
+  font-size: 4.8rem;
+  height: 6rem;
+  width: 6rem;
+}
+
+.title {
+  align-items: center;
+  color: #3c3a40;
+  display: flex;
+  font-family: Jost, monospace, sans-serif, Arial, Helvetica;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 4.3rem;
+  text-align: center;
+}
+
+
+.form {
+  align-items: center;
+  align-self: center;
+  background: #b8e6cd;
+  border: 0.15rem solid #effcf2;
+  border-radius: 4rem;
+  box-shadow: 0 0.6rem 3rem rgba(16, 161, 51, 0.4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 88%;
+  justify-content: space-evenly;
+  justify-self: center;
+  padding: 2rem;
+  width: 92%;
+}
+
+.form label {
+  align-items: center;
+  display: flex;
+  font-family: Jost, monospace, sans-serif, Arial, Helvetica;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 400;
+  height: 7%;
+  justify-content: space-between;
+  line-height: 2.3rem;
+  text-align: center;
+  width: 85%;
+}
+
+.form input , .form select {
+  background: #f0f4f5;
+  border: 0.1rem solid #b8e6cd;
+  border-radius: 2rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  font-family: Jost, monospace, sans-serif, Arial, Helvetica;
+  font-size: 1.6rem;
+  height: 93%;
+  outline: none;
+  text-align: center;
+  width: 42%;
+}
+
+.edit-pen {
+  font-size: 3.5rem;
+}
+
+.link_expenses {
+  align-items: center;
+  background: #10a133;
+  border: solid 0.1rem rgb(149, 149, 149);
+  border-radius: 2rem;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  font-family: Jost , monospace, sans-serif, Arial, Helvetica;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  height: 3.9rem;
+  justify-content: center;
+  line-height: 2.3rem;
+  margin-top: 3%;
+  text-align: center;
+  width: 15.6rem;
+}
+
+@media only screen and ( max-width : 48rem ) {
+
+  .container_form {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 4.2rem;
+  }
+
+  .form label {
+    font-size: 3rem;
+  }
+
+  .form input , .form select {
+    font-size: 2.4rem;
+  }
+
+  .head button {
+    font-size: 5.4rem;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .link_expenses {
+    font-size: 3rem;
+    height: 4.9rem;
+    width: 25.6rem;
+  }
+
+}

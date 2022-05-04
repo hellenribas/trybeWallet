@@ -1,9 +1,13 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { BiEditAlt } from 'react-icons/bi';
 import Header from './Header';
 import { fetchCurrencies, fetchAsk, editAction } from '../actions';
-import Table from './Table';
+import style from './style/Wallet.module.css';
+import Footer from './Footer';
 
 const Alimentação = 'Alimentação';
 class Wallet extends React.Component {
@@ -16,7 +20,7 @@ class Wallet extends React.Component {
       method: 'Dinheiro',
       currency: 'USD',
       tag: Alimentação,
-      edit: false,
+      redirect: false,
     };
   }
 
@@ -34,21 +38,22 @@ class Wallet extends React.Component {
 
   saveExpensesClick = () => {
     const { saveExpenses } = this.props;
-    this.setState((prevState) => ({ id: prevState.id + 1 }));
     const { value, description, method, currency, tag, id } = this.state;
-    saveExpenses({ value, description, method, currency, tag, id });
-    this.setState({
-      value: 0,
-      description: '',
-      method: 'Dinheiro',
-      currency: 'USD',
-      tag: Alimentação,
+    this.setState((prevState) => ({ id: prevState.id + 1 }), () => {
+      saveExpenses({ value, description, method, currency, tag, id });
+      this.setState({
+        value: 0,
+        description: '',
+        method: 'Dinheiro',
+        currency: 'USD',
+        tag: Alimentação,
+      });
     });
   }
 
   editExpensesClick = () => {
-    const { editExpenses, exchange } = this.props;
-    const { value, description, method, currency, tag, idTarget } = this.state;
+    const { editExpenses, exchange, idTarget } = this.props;
+    const { value, description, method, currency, tag } = this.state;
     const { exchangeRates } = exchange[idTarget];
     const id = idTarget;
     editExpenses({ value, description, method, currency, tag, id, exchangeRates });
@@ -58,100 +63,122 @@ class Wallet extends React.Component {
       method: 'Dinheiro',
       currency: 'USD',
       tag: Alimentação,
-    });
-  }
-
-  receiveEdit = (idTarget) => {
-    this.setState({
-      edit: true,
-      idTarget,
+      redirect: true,
     });
   }
 
   render() {
-    const { currencies } = this.props;
-    const { value, description, method, currency, tag, edit } = this.state;
+    const { currencies, edit, receiveEditOff } = this.props;
+    const { value, description, method, currency, tag, redirect } = this.state;
     return (
-      <div>
+      <div className={ style.container }>
         <Header />
-        <form>
-          <input
-            type="number"
-            data-testid="value-input"
-            name="value"
-            value={ value }
-            onChange={ this.handleInput }
-          />
-          <input
-            type="text"
-            data-testid="description-input"
-            name="description"
-            value={ description }
-            onChange={ this.handleInput }
-          />
-          <label htmlFor="options-currencies">
-            Moeda
-            <select
-              id="options-currencies"
-              onChange={ this.handleInput }
-              name="currency"
-              data-testid="currency-input"
-              value={ currency }
-            >
-              {currencies
-                .map((elem, index) => <option key={ `${elem}${index}` }>{elem}</option>)}
-            </select>
-          </label>
-          <label htmlFor="method-inputs">
-            Método de Pagamento
-            <select
-              data-testid="method-input"
-              id="method-inputs"
-              name="method"
-              value={ method }
-              onChange={ this.handleInput }
-            >
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="category-input">
-            Categoria
-            <select
-              id="category-input"
-              data-testid="tag-input"
-              onChange={ this.handleInput }
-              name="tag"
-              value={ tag }
-            >
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-            </select>
-          </label>
-          { edit
-            ? (
-              <button
-                type="button"
-                onClick={ () => this.editExpensesClick() }
-              >
-                Editar despesa
+        <div className={ style.container_form }>
+          <form className={ style.form }>
+            <div className={ style.head }>
+              <h1 className={ style.title }>ADICIONAR DESPESAS</h1>
+              { edit
+                ? (
+                  <button
+                    type="button"
+                    onClick={ () => {
+                      this.editExpensesClick();
+                      receiveEditOff();
+                    } }
+                  >
+                    <BiEditAlt className={ style['edit-pen'] } />
 
-              </button>
-            )
-            : (
-              <button
-                type="button"
-                onClick={ this.saveExpensesClick }
-              >
-                Adicionar despesa
+                  </button>
+                )
+                : (
+                  <button
+                    type="button"
+                    onClick={ this.saveExpensesClick }
+                  >
+                    +
 
-              </button>)}
-        </form>
-        <Table receiveEdit={ this.receiveEdit } />
+                  </button>)}
+            </div>
+            <label htmlFor="value">
+              <span>Quanto você pagou?</span>
+              <input
+                type="number"
+                data-testid="value-input"
+                name="value"
+                id="value"
+                value={ value }
+                onChange={ this.handleInput }
+              />
+            </label>
+            <label htmlFor="description">
+              O que você comprou?
+              <input
+                type="text"
+                data-testid="description-input"
+                name="description"
+                id="description"
+                value={ description }
+                placeholder="exemplo: café"
+                onChange={ this.handleInput }
+              />
+            </label>
+            <label htmlFor="category-input">
+              Qual a categoria?
+              <select
+                id="category-input"
+                data-testid="tag-input"
+                onChange={ this.handleInput }
+                name="tag"
+                value={ tag }
+              >
+                <option value="Alimentação">Alimentação</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Saúde">Saúde</option>
+              </select>
+            </label>
+            <label htmlFor="method-inputs">
+              Como você pagou?
+              <select
+                data-testid="method-input"
+                id="method-inputs"
+                name="method"
+                value={ method }
+                onChange={ this.handleInput }
+              >
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Cartão de crédito">Cartão de crédito</option>
+                <option value="Cartão de débito">Cartão de débito</option>
+              </select>
+            </label>
+            <label htmlFor="options-currencies">
+              Qual a Moeda utilizada?
+              <select
+                id="options-currencies"
+                onChange={ this.handleInput }
+                name="currency"
+                data-testid="currency-input"
+                value={ currency }
+              >
+                {currencies
+                  .map((elem, index) => (
+                    <option
+                      key={ `${elem}${index}` }
+                    >
+                      {elem}
+                    </option>))}
+              </select>
+            </label>
+            <Link
+              to="/despesas"
+            >
+              <button type="button" className={ style.link_expenses }>DESPESAS</button>
+            </Link>
+          </form>
+        </div>
+        <Footer />
+        {redirect && <Redirect to="/despesas" />}
       </div>
     );
   }
