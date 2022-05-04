@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Table from './pages/Table';
 import Wallet from './pages/Wallet';
-// import style from './App.module.css';
 
 class App extends Component {
   constructor() {
