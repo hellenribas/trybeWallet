@@ -33,7 +33,6 @@ class Header extends Component {
                   .reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2)
                 : 0.00
             }
-
           </div>
         </section>
         <section className={ style.user }>
