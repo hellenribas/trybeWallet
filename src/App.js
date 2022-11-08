@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   receiveEdit = (idTarget) => {
-    console.log(idTarget);
     this.setState({
       edit: true,
       idTarget,

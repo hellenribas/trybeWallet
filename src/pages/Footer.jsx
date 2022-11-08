@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { VscGithub } from 'react-icons/vsc';
-import style from './style/Footer.module.css';
+import style from '../style/Footer.module.css';
 
 export default class Footer extends Component {
   render() {

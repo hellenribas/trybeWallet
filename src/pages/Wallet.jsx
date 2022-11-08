@@ -5,8 +5,8 @@ import propTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { BiEditAlt } from 'react-icons/bi';
 import Header from './Header';
-import { fetchCurrencies, fetchAsk, editAction } from '../actions';
-import style from './style/Wallet.module.css';
+import { fetchCurrencies, fetchAsk, editAction } from '../redux/actions';
+import style from '../style/Wallet.module.css';
 import Footer from './Footer';
 
 const Alimentação = 'Alimentação';

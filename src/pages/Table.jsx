@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import Footer from './Footer';
-import { removeAction } from '../actions';
+import { removeAction } from '../redux/actions';
 import Header from './Header';
-import style from './style/Table.module.css';
+import style from '../style/Table.module.css';
 
 class Table extends Component {
   constructor() {
