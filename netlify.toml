@@ -1,0 +1,6 @@
+[build]
+base = "."
+command = "npm run build"
+publish = "./build/"
+[build.enviroment]
+REACT_APP_API_URL = "https://meu-endereco-producao.com.br/api"
