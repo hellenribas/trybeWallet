@@ -37,6 +37,7 @@ O arquivo `serviceWorker.js` foi fornecido pela Trybe
 
 ## Site
 
-https://hellenribas.github.io/trybeWallet/#/
+https://hellenribas.github.io/trybeWallet/#/ (site antigo)
+https://bright-daffodil-8147e0.netlify.app/ 
 
 
