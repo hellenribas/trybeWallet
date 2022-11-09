@@ -1,19 +1,17 @@
-import PropTypes, { string } from 'prop-types';
-
 import React, { Component } from 'react';
+
+import PropTypes, { string } from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from './images/logo.svg';
-import user from './images/user-logo.svg';
-import wallet from './images/wallet-logo.svg';
-import style from './style/Hearder.module.css';
+
+import logo from '../assets/imgs/logo.svg';
+import user from '../assets/imgs/user-logo.svg';
+import wallet from '../assets/imgs/wallet-logo.svg';
+import style from '../style/Hearder.module.css';
 
 class Header extends Component {
   render() {
     const { userEmail, despesas } = this.props;
-
-    const numberDespesa = despesas.map(({ currency, value, exchangeRates }) => (
-      Number(value) * Number(exchangeRates[currency].ask)));
 
     return (
       <header className={ style.container }>
@@ -25,16 +23,16 @@ class Header extends Component {
           <Link to="carteira">
             <img src={ wallet } alt="wallet-logo" />
           </Link>
-          <div className={ style.value }>
+          <section className={ style.value }>
             <div data-testid="header-currency-field">R$</div>
-            <div data-testid="total-field" />
             {
               despesas.length > 0
-                ? numberDespesa.reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2)
+                ? despesas.map(({ currency, value, exchangeRates }) => (
+                  Number(value) * Number(exchangeRates[currency].ask)))
+                  .reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2)
                 : 0.00
             }
-
-          </div>
+          </section>
         </section>
         <section className={ style.user }>
           <img src={ user } alt="user-logo" />

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
-import { emailAction } from '../actions';
-import style from './style/Login.module.css';
+import { emailAction } from '../redux/actions';
+
+import style from '../style/Login.module.css';
+import validationSchema from '../servers/validation';
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +13,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      isDisabled: true,
+      error: '',
     };
   }
 
@@ -18,23 +21,25 @@ class Login extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [target.name]: value,
-    }, () => this.validate());
+    });
   }
 
-  validate = () => {
+  handleButton = () => {
+    const { funcEmail, history } = this.props;
     const { email, password } = this.state;
-    const numbersix = 6;
-    if (email.match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
-    && password.length >= numbersix) {
-      this.setState({ isDisabled: false });
+    funcEmail(email);
+    const { error } = validationSchema(email, password);
+    if (error) {
+      this.setState({ error });
     } else {
-      this.setState({ isDisabled: true });
+      this.setState({ error: '' });
+      history.push('/carteira');
     }
   }
 
   render() {
-    const { isDisabled, email } = this.state;
-    const { funcEmail, history } = this.props;
+    const { error } = this.state;
+
     return (
       <main className={ style.main }>
         <form className={ style.form }>
@@ -62,16 +67,12 @@ class Login extends Component {
           </label>
           <button
             type="button"
-            disabled={ isDisabled }
-            onClick={ () => {
-              funcEmail(email);
-              history.push('/carteira');
-            } }
+            onClick={ this.handleButton }
             className={ style.button }
           >
             ENTRAR
-
           </button>
+          {error && <p>{error}</p>}
         </form>
       </main>
     );

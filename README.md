@@ -31,7 +31,7 @@ O arquivo `serviceWorker.js` foi fornecido pela Trybe
 
 ## Instalando Dependências
 
-- npm instal
+- npm install
 
 ---
 

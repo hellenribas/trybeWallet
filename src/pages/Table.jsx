@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import Footer from './Footer';
-import { removeAction } from '../actions';
+import { removeAction } from '../redux/actions';
 import Header from './Header';
-import style from './style/Table.module.css';
+import style from '../style/Table.module.css';
 
 class Table extends Component {
   constructor() {
@@ -20,7 +20,7 @@ class Table extends Component {
     const { expenses, removeExpense, receiveEdit } = this.props;
     const { redirect } = this.state;
     return (
-      <div className={ style.container }>
+      <section className={ style.container }>
         <Header />
         <section className={ style.main }>
           {expenses.length === 0
@@ -115,13 +115,11 @@ class Table extends Component {
               className={ style.button }
             >
               ADICIONAR MAIS
-
             </button>
-
           </Link>
         )}
         <Footer />
-      </div>
+      </section>
     );
   }
 }
