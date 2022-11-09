@@ -23,9 +23,8 @@ class Header extends Component {
           <Link to="carteira">
             <img src={ wallet } alt="wallet-logo" />
           </Link>
-          <div className={ style.value }>
+          <section className={ style.value }>
             <div data-testid="header-currency-field">R$</div>
-            <div data-testid="total-field" />
             {
               despesas.length > 0
                 ? despesas.map(({ currency, value, exchangeRates }) => (
@@ -33,7 +32,7 @@ class Header extends Component {
                   .reduce((elem3, elem2) => (elem3 + elem2)).toFixed(2)
                 : 0.00
             }
-          </div>
+          </section>
         </section>
         <section className={ style.user }>
           <img src={ user } alt="user-logo" />

@@ -20,7 +20,7 @@ class Table extends Component {
     const { expenses, removeExpense, receiveEdit } = this.props;
     const { redirect } = this.state;
     return (
-      <div className={ style.container }>
+      <section className={ style.container }>
         <Header />
         <section className={ style.main }>
           {expenses.length === 0
@@ -115,13 +115,11 @@ class Table extends Component {
               className={ style.button }
             >
               ADICIONAR MAIS
-
             </button>
-
           </Link>
         )}
         <Footer />
-      </div>
+      </section>
     );
   }
 }

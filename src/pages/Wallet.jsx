@@ -14,7 +14,6 @@ class Wallet extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: 0,
       value: 0,
       description: '',
       method: 'Dinheiro',
@@ -36,19 +35,26 @@ class Wallet extends React.Component {
     });
   }
 
-  saveExpensesClick = () => {
-    const { saveExpenses } = this.props;
-    const { value, description, method, currency, tag, id } = this.state;
-    this.setState((prevState) => ({ id: prevState.id + 1 }), () => {
-      saveExpenses({ value, description, method, currency, tag, id });
-      this.setState({
-        value: 0,
-        description: '',
-        method: 'Dinheiro',
-        currency: 'USD',
-        tag: Alimentação,
-      });
+  clear = () => {
+    this.setState({
+      value: 0,
+      description: '',
+      method: 'Dinheiro',
+      currency: 'USD',
+      tag: Alimentação,
     });
+  }
+
+  saveExpensesClick = () => {
+    const { saveExpenses, exchange } = this.props;
+    const { value, description, method, currency, tag } = this.state;
+    if (exchange.length > 0) {
+      const i = Number(exchange[exchange.length - 1].id) + 1;
+      saveExpenses({ value, description, method, currency, tag, id: i });
+    } else {
+      saveExpenses({ value, description, method, currency, tag, id: 0 });
+    }
+    this.clear();
   }
 
   editExpensesClick = () => {

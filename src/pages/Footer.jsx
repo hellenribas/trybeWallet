@@ -8,7 +8,7 @@ export default class Footer extends Component {
       <footer
         className={ style.footer }
       >
-        <a href="https://github.com/hellenribas?tab=repositories" target="_blank" rel="noreferrer">
+        <a href="https://github.com/hellenribas?tab=repositories" target="_blank" rel="noopener noreferrer">
           <VscGithub className={ style.github } />
         </a>
 
